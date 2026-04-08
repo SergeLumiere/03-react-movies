@@ -1,4 +1,5 @@
 import SearchBar from "../SearchBar/SearchBar";
+import MovieGrid from "../MovieGrid/MovieGrid";
 import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
 import { fetchMovies } from "../../services/movieService";
@@ -24,10 +25,17 @@ export default function App() {
     }
   };
 
+  const handleSelect = (movie: Movie) => {
+    console.log("Selected movie:", movie);
+  };
+
   return (
     <>
       <Toaster />
       <SearchBar onSubmit={handleSearch} />
+      {movies.length > 0 && (
+        <MovieGrid movies={movies} onSelect={handleSelect} />
+      )}
     </>
   );
 }
